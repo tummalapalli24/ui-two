@@ -2,7 +2,7 @@ import { ChatBot } from "@/components/ChatBot";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-medical-light to-background">
+    <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="text-center px-4">
         <div className="mb-8 flex justify-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-5xl shadow-lg">

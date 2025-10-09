@@ -166,9 +166,6 @@ export const ChatBot = () => {
                 <Send className="h-4 w-4" />
               </Button>
             </div>
-            <p className="mt-2 text-center text-xs text-muted-foreground">
-              For medical emergencies, call your local emergency number
-            </p>
           </div>
         </div>
       )}
