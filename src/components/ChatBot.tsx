@@ -3,6 +3,7 @@ import { Send, X, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   id: number;
@@ -22,7 +23,9 @@ export const ChatBot = () => {
     },
   ]);
   const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -32,8 +35,8 @@ export const ChatBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = () => {
-    if (!inputValue.trim()) return;
+  const handleSend = async () => {
+    if (!inputValue.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: messages.length + 1,
@@ -43,18 +46,48 @@ export const ChatBot = () => {
     };
 
     setMessages((prev) => [...prev, userMessage]);
+    const question = inputValue;
     setInputValue("");
+    setIsLoading(true);
 
-    // Simulate bot response
-    setTimeout(() => {
+    try {
+      const response = await fetch("http://52.54.56.23:7860/ask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to get response from server");
+      }
+
+      const data = await response.json();
       const botMessage: Message = {
         id: messages.length + 2,
-        text: "Thank you for your message. As a demo assistant, I'm here to help with general health information. For specific medical advice, please consult a healthcare professional.",
+        text: data.answer || data.response || "I received your question but couldn't generate a response.",
         isBot: true,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, botMessage]);
-    }, 1000);
+    } catch (error) {
+      console.error("Error calling API:", error);
+      toast({
+        title: "Error",
+        description: "Failed to get response. Please try again.",
+        variant: "destructive",
+      });
+      const errorMessage: Message = {
+        id: messages.length + 2,
+        text: "Sorry, I'm having trouble connecting. Please try again later.",
+        isBot: true,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -161,7 +194,8 @@ export const ChatBot = () => {
               <Button
                 onClick={handleSend}
                 size="icon"
-                className="h-10 w-10 rounded-full bg-primary hover:bg-secondary"
+                disabled={isLoading}
+                className="h-10 w-10 rounded-full bg-primary hover:bg-secondary disabled:opacity-50"
               >
                 <Send className="h-4 w-4" />
               </Button>
