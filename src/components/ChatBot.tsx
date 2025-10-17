@@ -46,30 +46,33 @@ export const ChatBot = () => {
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    const question = inputValue;
+    const query = inputValue;
     setInputValue("");
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://52.54.56.23:7860/ask", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question }),
-      });
+      // ✅ Call backend with GET request instead of POST
+      const response = await fetch(
+        `http://52.54.56.23:7860/ask?query=${encodeURIComponent(query)}`
+      );
 
       if (!response.ok) {
-        throw new Error("Failed to get response from server");
+        throw new Error(`Failed to get response from server (status ${response.status})`);
       }
 
       const data = await response.json();
+
       const botMessage: Message = {
         id: messages.length + 2,
-        text: data.answer || data.response || "I received your question but couldn't generate a response.",
+        text:
+          data.answer ||
+          data.response ||
+          data.message ||
+          "I received your question but couldn't generate a response.",
         isBot: true,
         timestamp: new Date(),
       };
+
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error calling API:", error);
@@ -78,6 +81,7 @@ export const ChatBot = () => {
         description: "Failed to get response. Please try again.",
         variant: "destructive",
       });
+
       const errorMessage: Message = {
         id: messages.length + 2,
         text: "Sorry, I'm having trouble connecting. Please try again later.",
@@ -89,6 +93,7 @@ export const ChatBot = () => {
       setIsLoading(false);
     }
   };
+
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
