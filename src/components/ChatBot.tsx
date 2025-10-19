@@ -182,6 +182,20 @@ export const ChatBot = () => {
                   </div>
                 </div>
               ))}
+              {isLoading && (
+                <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
+                  <div className="max-w-[80%] rounded-2xl px-4 py-3 bg-primary text-primary-foreground rounded-tl-none"
+                    style={{ boxShadow: "var(--shadow-sm)" }}>
+                    <p className="text-sm leading-relaxed">
+                      <span className="inline-flex gap-1">
+                        <span className="animate-bounce" style={{ animationDelay: "0ms" }}>.</span>
+                        <span className="animate-bounce" style={{ animationDelay: "150ms" }}>.</span>
+                        <span className="animate-bounce" style={{ animationDelay: "300ms" }}>.</span>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
