@@ -178,8 +178,8 @@ export const ChatBot = () => {
                   >
                     <div className="flex items-start gap-2">
                       {message.isBot && (
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-foreground/20 flex-shrink-0 mt-0.5">
-                          <Stethoscope className="h-3 w-3" />
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white flex-shrink-0 mt-0.5">
+                          <Stethoscope className="h-3.5 w-3.5 text-green-500" />
                         </div>
                       )}
                       <p className="text-sm leading-relaxed flex-1">{message.text}</p>
