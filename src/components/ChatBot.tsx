@@ -111,7 +111,9 @@ export const ChatBot = () => {
           style={{ boxShadow: "var(--shadow-lg)" }}
           aria-label="Open chat"
         >
-          <Activity className="h-8 w-8" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+            <Activity className="h-6 w-6 text-green-500" />
+          </div>
         </button>
       )}
 
@@ -128,7 +130,9 @@ export const ChatBot = () => {
           {/* Header */}
           <div className="flex items-center justify-between bg-primary px-6 py-4 text-primary-foreground">
             <div className="flex items-center gap-3">
-              <Activity className="h-6 w-6" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
+                <Activity className="h-5 w-5 text-green-500" />
+              </div>
               <div>
                 <h3 className="text-lg font-semibold">canHeal</h3>
                 <p className="text-xs opacity-90">Your Health Assistant</p>
@@ -173,8 +177,12 @@ export const ChatBot = () => {
                     }}
                   >
                     <div className="flex items-start gap-2">
-                      {message.isBot && <Stethoscope className="h-4 w-4 mt-0.5 flex-shrink-0" />}
-                      <p className="text-sm leading-relaxed">{message.text}</p>
+                      {message.isBot && (
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-foreground/20 flex-shrink-0 mt-0.5">
+                          <Stethoscope className="h-3 w-3" />
+                        </div>
+                      )}
+                      <p className="text-sm leading-relaxed flex-1">{message.text}</p>
                     </div>
                     <span className="mt-1 block text-xs opacity-70">
                       {message.timestamp.toLocaleTimeString([], {
