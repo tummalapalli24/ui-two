@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, X, Minimize2 } from "lucide-react";
+import { Send, X, Minimize2, Activity, Stethoscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -111,7 +111,7 @@ export const ChatBot = () => {
           style={{ boxShadow: "var(--shadow-lg)" }}
           aria-label="Open chat"
         >
-          <span className="text-3xl">👨‍⚕️</span>
+          <Activity className="h-8 w-8" />
         </button>
       )}
 
@@ -128,7 +128,7 @@ export const ChatBot = () => {
           {/* Header */}
           <div className="flex items-center justify-between bg-primary px-6 py-4 text-primary-foreground">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">👨‍⚕️</span>
+              <Activity className="h-6 w-6" />
               <div>
                 <h3 className="text-lg font-semibold">canHeal</h3>
                 <p className="text-xs opacity-90">Your Health Assistant</p>
@@ -172,7 +172,10 @@ export const ChatBot = () => {
                       boxShadow: message.isBot ? "var(--shadow-sm)" : "var(--shadow-sm)",
                     }}
                   >
-                    <p className="text-sm leading-relaxed">{message.text}</p>
+                    <div className="flex items-start gap-2">
+                      {message.isBot && <Stethoscope className="h-4 w-4 mt-0.5 flex-shrink-0" />}
+                      <p className="text-sm leading-relaxed">{message.text}</p>
+                    </div>
                     <span className="mt-1 block text-xs opacity-70">
                       {message.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",
