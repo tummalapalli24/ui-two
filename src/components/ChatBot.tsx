@@ -166,8 +166,13 @@ export const ChatBot = () => {
                   key={message.id}
                   className={`flex ${message.isBot ? "justify-start" : "justify-end"} animate-in fade-in slide-in-from-bottom-2`}
                 >
+                  {message.isBot && (
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white flex-shrink-0 mt-1 mr-2">
+                      <Stethoscope className="h-3.5 w-3.5 text-green-500" />
+                    </div>
+                  )}
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                    className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-2xl px-4 py-3 ${
                       message.isBot
                         ? "bg-primary text-primary-foreground rounded-tl-none"
                         : "bg-background text-foreground rounded-tr-none border border-border"
@@ -176,14 +181,7 @@ export const ChatBot = () => {
                       boxShadow: message.isBot ? "var(--shadow-sm)" : "var(--shadow-sm)",
                     }}
                   >
-                    <div className="flex items-start gap-2">
-                      {message.isBot && (
-                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white flex-shrink-0 mt-0.5">
-                          <Stethoscope className="h-3.5 w-3.5 text-green-500" />
-                        </div>
-                      )}
-                      <p className="text-sm leading-relaxed flex-1">{message.text}</p>
-                    </div>
+                    <p className="text-sm leading-relaxed">{message.text}</p>
                     <span className="mt-1 block text-xs opacity-70">
                       {message.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",
@@ -219,7 +217,7 @@ export const ChatBot = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message..."
-                className="flex-1 rounded-full border-border bg-muted/50 px-4 focus-visible:ring-primary"
+                className="flex-1 rounded-full border-border bg-gray-200 px-4 focus-visible:ring-primary"
               />
               <Button
                 onClick={handleSend}
