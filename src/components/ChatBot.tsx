@@ -166,55 +166,55 @@ export const ChatBot = () => {
                   key={message.id}
                   className={`flex ${message.isBot ? "justify-start" : "justify-end"} animate-in fade-in slide-in-from-bottom-2`}
                 >
-                  <div
-                    className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-xl px-4 py-3 ${
-                      message.isBot
-                        ? "relative pt-8"
-                        : ""
-                    }`}
-                    style={{
-                      backgroundColor: message.isBot ? "#436F79" : "#F0F0F0",
-                      color: message.isBot ? "#FFFFFF" : "#333333",
-                      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                      borderRadius: "12px",
-                    }}
-                  >
+                  <div className={`${message.isBot ? "relative ml-3" : ""}`}>
                     {message.isBot && (
-                      <div className="absolute top-[6px] left-[6px]">
-                        <Stethoscope className="h-6 w-6 text-white" />
+                      <div className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
+                        <Stethoscope className="h-4 w-4 text-[#436F79]" />
                       </div>
                     )}
-                    <p className={`text-sm leading-relaxed ${message.isBot ? "pl-8" : ""}`}>{message.text}</p>
-                    <span className={`mt-1 block text-xs ${message.isBot ? "pl-8 opacity-80" : "opacity-60"}`}>
-                      {message.timestamp.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </span>
+                    <div
+                      className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-xl px-4 py-3`}
+                      style={{
+                        backgroundColor: message.isBot ? "#436F79" : "#F0F0F0",
+                        color: message.isBot ? "#FFFFFF" : "#333333",
+                        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                        borderRadius: "12px",
+                      }}
+                    >
+                      <p className="text-sm leading-relaxed">{message.text}</p>
+                      <span className={`mt-1 block text-xs ${message.isBot ? "opacity-80" : "opacity-60"}`}>
+                        {message.timestamp.toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
-                  <div 
-                    className="max-w-[80%] rounded-xl px-4 py-3 relative pt-8"
-                    style={{ 
-                      backgroundColor: "#436F79",
-                      color: "#FFFFFF",
-                      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                      borderRadius: "12px"
-                    }}
-                  >
-                    <div className="absolute top-[6px] left-[6px]">
-                      <Stethoscope className="h-6 w-6 text-white" />
+                  <div className="relative ml-3">
+                    <div className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
+                      <Stethoscope className="h-4 w-4 text-[#436F79]" />
                     </div>
-                    <p className="text-sm leading-relaxed pl-8">
-                      <span className="inline-flex gap-1">
-                        <span className="animate-bounce" style={{ animationDelay: "0ms" }}>.</span>
-                        <span className="animate-bounce" style={{ animationDelay: "150ms" }}>.</span>
-                        <span className="animate-bounce" style={{ animationDelay: "300ms" }}>.</span>
-                      </span>
-                    </p>
+                    <div 
+                      className="max-w-[80%] rounded-xl px-4 py-3"
+                      style={{ 
+                        backgroundColor: "#436F79",
+                        color: "#FFFFFF",
+                        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                        borderRadius: "12px"
+                      }}
+                    >
+                      <p className="text-sm leading-relaxed">
+                        <span className="inline-flex gap-1">
+                          <span className="animate-bounce" style={{ animationDelay: "0ms" }}>.</span>
+                          <span className="animate-bounce" style={{ animationDelay: "150ms" }}>.</span>
+                          <span className="animate-bounce" style={{ animationDelay: "300ms" }}>.</span>
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               )}
