@@ -160,29 +160,32 @@ export const ChatBot = () => {
 
           {/* Messages */}
           <ScrollArea className="flex-1 bg-muted/30 p-4">
-            <div className="space-y-4">
+            <div className="space-y-2.5">
               {messages.map((message) => (
                 <div
                   key={message.id}
                   className={`flex ${message.isBot ? "justify-start" : "justify-end"} animate-in fade-in slide-in-from-bottom-2`}
                 >
-                  {message.isBot && (
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white flex-shrink-0 mt-1 mr-2">
-                      <Stethoscope className="h-3.5 w-3.5 text-green-500" />
-                    </div>
-                  )}
                   <div
-                    className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-2xl px-4 py-3 ${
+                    className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-xl px-4 py-3 ${
                       message.isBot
-                        ? "bg-primary text-primary-foreground rounded-tl-none"
-                        : "bg-background text-foreground rounded-tr-none border border-border"
+                        ? "relative pt-8"
+                        : ""
                     }`}
                     style={{
-                      boxShadow: message.isBot ? "var(--shadow-sm)" : "var(--shadow-sm)",
+                      backgroundColor: message.isBot ? "#436F79" : "#F0F0F0",
+                      color: message.isBot ? "#FFFFFF" : "#333333",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                      borderRadius: "12px",
                     }}
                   >
-                    <p className="text-sm leading-relaxed">{message.text}</p>
-                    <span className="mt-1 block text-xs opacity-70">
+                    {message.isBot && (
+                      <div className="absolute top-[6px] left-[6px]">
+                        <Stethoscope className="h-6 w-6 text-white" />
+                      </div>
+                    )}
+                    <p className={`text-sm leading-relaxed ${message.isBot ? "pl-8" : ""}`}>{message.text}</p>
+                    <span className={`mt-1 block text-xs ${message.isBot ? "pl-8 opacity-80" : "opacity-60"}`}>
                       {message.timestamp.toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -193,9 +196,19 @@ export const ChatBot = () => {
               ))}
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
-                  <div className="max-w-[80%] rounded-2xl px-4 py-3 bg-primary text-primary-foreground rounded-tl-none"
-                    style={{ boxShadow: "var(--shadow-sm)" }}>
-                    <p className="text-sm leading-relaxed">
+                  <div 
+                    className="max-w-[80%] rounded-xl px-4 py-3 relative pt-8"
+                    style={{ 
+                      backgroundColor: "#436F79",
+                      color: "#FFFFFF",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                      borderRadius: "12px"
+                    }}
+                  >
+                    <div className="absolute top-[6px] left-[6px]">
+                      <Stethoscope className="h-6 w-6 text-white" />
+                    </div>
+                    <p className="text-sm leading-relaxed pl-8">
                       <span className="inline-flex gap-1">
                         <span className="animate-bounce" style={{ animationDelay: "0ms" }}>.</span>
                         <span className="animate-bounce" style={{ animationDelay: "150ms" }}>.</span>
