@@ -117,7 +117,7 @@ export const ChatBot = () => {
           aria-label="Open chat"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-            <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
+            <img src={chatbotIcon} alt="Chatbot" className="h-8 w-8" />
           </div>
         </button>
       )}
@@ -136,7 +136,7 @@ export const ChatBot = () => {
           <div className="flex items-center justify-between px-6 py-4" style={{ backgroundColor: "#007D84", color: "#FFFFFF" }}>
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
-                <img src={chatbotIcon} alt="Chatbot" className="h-5 w-5" />
+                <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
               </div>
               <div>
                 <h3 className="text-lg font-bold">Information Navigator</h3>
@@ -176,7 +176,7 @@ export const ChatBot = () => {
                   <div className={`${message.isBot ? "relative ml-3" : ""}`}>
                     {message.isBot && (
                       <div className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
-                        <img src={chatbotIcon} alt="Bot" className="h-4 w-4" />
+                        <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
                       </div>
                     )}
                     <div
@@ -203,7 +203,7 @@ export const ChatBot = () => {
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
                   <div className="relative ml-3">
                     <div className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
-                      <img src={chatbotIcon} alt="Bot" className="h-4 w-4" />
+                      <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
                     </div>
                     <div 
                       className="max-w-[80%] rounded-xl px-4 py-3"
