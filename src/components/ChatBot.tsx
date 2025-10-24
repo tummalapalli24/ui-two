@@ -140,8 +140,8 @@ export const ChatBot = () => {
                 <FontAwesomeIcon icon={faCommentDots} className="h-5 w-5" style={{ color: "#007D84" }} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold">Information Navigator</h3>
-                <p className="text-xs opacity-90">Your Information Navigator</p>
+                <h3 className="text-lg font-normal">Information Navigator</h3>
+                <p className="text-xs font-normal opacity-90">Your Information Navigator</p>
               </div>
             </div>
             <div className="flex gap-2">
