@@ -128,7 +128,7 @@ export const ChatBot = () => {
           aria-label="Open chat"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-            <img src={chatbotIcon} alt="Chatbot" className="h-8 w-8" />
+            <img src={chatbotIcon} alt="Chatbot" className="h-10 w-10" />
           </div>
         </button>
       )}
@@ -141,7 +141,7 @@ export const ChatBot = () => {
           onClick={() => setIsMinimized(false)}
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
-            <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
+            <img src={chatbotIcon} alt="Chatbot" className="h-7 w-7" />
           </div>
           <span className="text-sm font-semibold text-white ml-3">Information Navigator</span>
           <div className="flex h-8 w-8 items-center justify-center">
@@ -180,7 +180,7 @@ export const ChatBot = () => {
           >
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
-                <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
+                <img src={chatbotIcon} alt="Chatbot" className="h-8 w-8" />
               </div>
               <div>
                 <h3 className="text-lg font-bold">Information Navigator</h3>
@@ -225,7 +225,7 @@ export const ChatBot = () => {
                         className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white"
                         style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
                       >
-                        <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
+                        <img src={chatbotIcon} alt="Bot" className="h-6 w-6" />
                       </div>
                     )}
                     <div
@@ -269,7 +269,7 @@ export const ChatBot = () => {
                       className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white"
                       style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
                     >
-                      <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
+                      <img src={chatbotIcon} alt="Bot" className="h-6 w-6" />
                     </div>
                     <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
