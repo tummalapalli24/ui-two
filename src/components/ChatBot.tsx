@@ -18,20 +18,25 @@ interface Message {
 }
 
 export const ChatBot = () => {
+  const initialMessage = {
+    id: 1,
+    text: "Hello! I'm Information Navigator, your virtual assistant. How can I help you today?",
+    isBot: true,
+    timestamp: new Date(),
+  };
+
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: "Hello! I'm Information Navigator, your virtual assistant. How can I help you today?",
-      isBot: true,
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([initialMessage]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setMessages([{ ...initialMessage, id: 1, timestamp: new Date() }]);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -111,7 +116,7 @@ export const ChatBot = () => {
   return (
     <>
       {/* Floating Chat Button */}
-      {(!isOpen || isMinimized) && (
+      {!isOpen && (
         <button
           onClick={() => {
             setIsOpen(true);
@@ -125,6 +130,36 @@ export const ChatBot = () => {
             <img src={chatbotIcon} alt="Chatbot" className="h-8 w-8" />
           </div>
         </button>
+      )}
+
+      {/* Minimized Bar */}
+      {isOpen && isMinimized && (
+        <div
+          className="fixed bottom-6 right-6 z-50 flex h-[60px] w-[240px] items-center justify-between rounded-full px-4 shadow-lg animate-in slide-in-from-bottom-4 fade-in cursor-pointer hover:shadow-xl transition-shadow"
+          style={{ backgroundColor: "#007D84" }}
+          onClick={() => setIsMinimized(false)}
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
+            <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
+          </div>
+          <span className="text-sm font-semibold text-white">Information Navigator</span>
+          <div className="flex h-8 w-8 items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-white"
+            >
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </div>
+        </div>
       )}
 
       {/* Chat Window */}
@@ -164,7 +199,7 @@ export const ChatBot = () => {
               <Button
                 size="icon"
                 variant="ghost"
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="h-8 w-8 rounded-full hover:bg-white/20"
                 style={{ color: "#FFFFFF" }}
               >
