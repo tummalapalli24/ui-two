@@ -5,12 +5,14 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import chatbotIcon from "@/assets/chatbot-icon.png";
+import { Sources } from "./Sources";
 
 interface Message {
   id: number;
   text: string;
   isBot: boolean;
   timestamp: Date;
+  messageId?: string;
 }
 
 export const ChatBot = () => {
@@ -73,6 +75,7 @@ export const ChatBot = () => {
           "I received your question but couldn't generate a response.",
         isBot: true,
         timestamp: new Date(),
+        messageId: data.messageId || `msg-${Date.now()}`,
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -195,6 +198,9 @@ export const ChatBot = () => {
                           minute: "2-digit",
                         })}
                       </span>
+                      {message.isBot && message.messageId && (
+                        <Sources messageId={message.messageId} />
+                      )}
                     </div>
                   </div>
                 </div>
