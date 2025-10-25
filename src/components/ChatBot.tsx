@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, X, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import chatbotIcon from "@/assets/chatbot-icon.png";
@@ -108,7 +108,8 @@ export const ChatBot = () => {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
       handleSend();
     }
   };
@@ -142,7 +143,7 @@ export const ChatBot = () => {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
             <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
           </div>
-          <span className="text-sm font-semibold text-white">Information Navigator</span>
+          <span className="text-sm font-semibold text-white ml-3">Information Navigator</span>
           <div className="flex h-8 w-8 items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -302,20 +303,21 @@ export const ChatBot = () => {
 
           {/* Input */}
           <div className="border-t bg-background p-4">
-            <div className="flex gap-2">
-              <Input
+            <div className="flex gap-2 items-end">
+              <Textarea
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 placeholder="Type your message..."
-                className="flex-1 rounded-full border-border bg-gray-200 px-4"
+                className="flex-1 rounded-2xl border-border bg-gray-200 px-4 py-3 min-h-[44px] max-h-[120px] resize-none"
                 style={{ backgroundColor: "#E2E9EB" }}
+                rows={1}
               />
               <Button
                 onClick={handleSend}
                 size="icon"
                 disabled={isLoading}
-                className="h-10 w-10 rounded-full disabled:opacity-50"
+                className="h-10 w-10 rounded-full disabled:opacity-50 flex-shrink-0"
                 style={{ backgroundColor: "#007D84", color: "#FFFFFF" }}
               >
                 <Send className="h-4 w-4" />
