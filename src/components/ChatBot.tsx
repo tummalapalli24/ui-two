@@ -13,6 +13,8 @@ interface Message {
   isBot: boolean;
   timestamp: Date;
   messageId?: string;
+  intLinks?: string[];
+  extLinks?: string[];
 }
 
 export const ChatBot = () => {
@@ -55,7 +57,6 @@ export const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      // ✅ Call backend with GET request instead of POST
       const response = await fetch(
         `http://52.54.56.23:7860/ask?query=${encodeURIComponent(query)}`
       );
@@ -76,6 +77,8 @@ export const ChatBot = () => {
         isBot: true,
         timestamp: new Date(),
         messageId: data.messageId || `msg-${Date.now()}`,
+        intLinks: data.intLinks || [],
+        extLinks: data.extLinks || [],
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -98,7 +101,6 @@ export const ChatBot = () => {
       setIsLoading(false);
     }
   };
-
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -129,21 +131,24 @@ export const ChatBot = () => {
       {isOpen && !isMinimized && (
         <div
           className="fixed bottom-6 right-6 z-50 flex h-[600px] w-[400px] flex-col overflow-hidden rounded-2xl bg-card shadow-2xl animate-in slide-in-from-bottom-4 fade-in"
-          style={{ 
+          style={{
             boxShadow: "var(--shadow-lg)",
             backgroundColor: "hsl(var(--background))",
-            colorScheme: "light"
+            colorScheme: "light",
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4" style={{ backgroundColor: "#007D84", color: "#FFFFFF" }}>
+          <div
+            className="flex items-center justify-between px-6 py-4"
+            style={{ backgroundColor: "#007D84", color: "#FFFFFF" }}
+          >
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
                 <img src={chatbotIcon} alt="Chatbot" className="h-6 w-6" />
               </div>
               <div>
                 <h3 className="text-lg font-bold">Information Navigator</h3>
-                <p className="text-xs font-normal opacity-90">Your Information Navigator</p>
+                <p className="text-xs font-normal opacity-90">Your Helpful Navigator</p>
               </div>
             </div>
             <div className="flex gap-2">
@@ -174,11 +179,16 @@ export const ChatBot = () => {
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex ${message.isBot ? "justify-start" : "justify-end"} animate-in fade-in slide-in-from-bottom-2`}
+                  className={`flex ${
+                    message.isBot ? "justify-start" : "justify-end"
+                  } animate-in fade-in slide-in-from-bottom-2`}
                 >
                   <div className={`${message.isBot ? "relative ml-3" : ""}`}>
                     {message.isBot && (
-                      <div className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
+                      <div
+                        className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white"
+                        style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
+                      >
                         <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
                       </div>
                     )}
@@ -192,15 +202,26 @@ export const ChatBot = () => {
                       }}
                     >
                       <p className="text-sm font-normal leading-relaxed">{message.text}</p>
-                      <span className={`mt-1 block text-xs font-normal ${message.isBot ? "opacity-80" : "opacity-60"}`}>
+                      <span
+                        className={`mt-1 block text-xs font-normal ${
+                          message.isBot ? "opacity-80" : "opacity-60"
+                        }`}
+                      >
                         {message.timestamp.toLocaleTimeString([], {
                           hour: "2-digit",
                           minute: "2-digit",
                         })}
                       </span>
-                      {message.isBot && message.messageId && (
-                        <Sources messageId={message.messageId} />
-                      )}
+
+                      {/* Sources Section */}
+                      {message.isBot &&
+                        (message.intLinks?.length > 0 ||
+                          message.extLinks?.length > 0) && (
+                          <Sources
+                            intLinks={message.intLinks}
+                            extLinks={message.extLinks}
+                          />
+                        )}
                     </div>
                   </div>
                 </div>
@@ -208,23 +229,32 @@ export const ChatBot = () => {
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
                   <div className="relative ml-3">
-                    <div className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white" style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
+                    <div
+                      className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-white"
+                      style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
+                    >
                       <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
                     </div>
-                    <div 
+                    <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
-                      style={{ 
+                      style={{
                         backgroundColor: "#007D84",
                         color: "#FFFFFF",
                         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                        borderRadius: "12px"
+                        borderRadius: "12px",
                       }}
                     >
                       <p className="text-sm font-normal leading-relaxed">
                         <span className="inline-flex gap-1">
-                          <span className="animate-bounce" style={{ animationDelay: "0ms" }}>.</span>
-                          <span className="animate-bounce" style={{ animationDelay: "150ms" }}>.</span>
-                          <span className="animate-bounce" style={{ animationDelay: "300ms" }}>.</span>
+                          <span className="animate-bounce" style={{ animationDelay: "0ms" }}>
+                            .
+                          </span>
+                          <span className="animate-bounce" style={{ animationDelay: "150ms" }}>
+                            .
+                          </span>
+                          <span className="animate-bounce" style={{ animationDelay: "300ms" }}>
+                            .
+                          </span>
                         </span>
                       </p>
                     </div>
