@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import chatbotIcon from "@/assets/chatbot-icon.png";
+import botMessageIcon from "@/assets/bot-message-icon.png";
 import { Sources } from "./Sources";
 
 interface Message {
@@ -220,9 +221,9 @@ export const ChatBot = () => {
                   <div className={`${message.isBot ? "relative" : ""}`}>
                     {message.isBot && (
                       <img 
-                        src={chatbotIcon} 
+                        src={botMessageIcon} 
                         alt="Bot" 
-                        className="absolute -left-6 top-0 h-5 w-5" 
+                        className="absolute -left-4 top-0 h-6 w-6" 
                       />
                     )}
                     <div
@@ -263,9 +264,9 @@ export const ChatBot = () => {
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
                   <div className="relative">
                     <img 
-                      src={chatbotIcon} 
+                      src={botMessageIcon} 
                       alt="Bot" 
-                      className="absolute -left-6 top-0 h-5 w-5" 
+                      className="absolute -left-4 top-0 h-6 w-6" 
                     />
                     <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
