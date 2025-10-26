@@ -6,6 +6,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import chatbotIcon from "@/assets/chatbot-icon.png";
 import { Sources } from "./Sources";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCommentDots } from "@fortawesome/free-regular-svg-icons";
 
 interface Message {
   id: number;
@@ -219,11 +221,9 @@ export const ChatBot = () => {
                 >
                   <div className={`${message.isBot ? "relative" : ""}`}>
                     {message.isBot && (
-                      <img 
-                        src={chatbotIcon} 
-                        alt="Bot" 
-                        className="absolute -left-7 top-1 h-4 w-4" 
-                      />
+                      <div className="absolute -left-4 top-2 flex h-6 w-6 items-center justify-center text-white" style={{ backgroundColor: "#007D84", borderRadius: "50%" }}>
+                        <FontAwesomeIcon icon={faCommentDots} className="h-3 w-3" />
+                      </div>
                     )}
                     <div
                       className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-xl px-4 py-3`}
@@ -262,11 +262,9 @@ export const ChatBot = () => {
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
                   <div className="relative">
-                    <img 
-                      src={chatbotIcon} 
-                      alt="Bot" 
-                      className="absolute -left-7 top-1 h-4 w-4" 
-                    />
+                    <div className="absolute -left-4 top-2 flex h-6 w-6 items-center justify-center text-white" style={{ backgroundColor: "#007D84", borderRadius: "50%" }}>
+                      <FontAwesomeIcon icon={faCommentDots} className="h-3 w-3" />
+                    </div>
                     <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
                       style={{
