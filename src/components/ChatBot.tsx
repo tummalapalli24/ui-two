@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, X, Minimize2 } from "lucide-react";
+import { Send, X, Minimize2, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -127,9 +127,7 @@ export const ChatBot = () => {
           style={{ backgroundColor: "#007D84", boxShadow: "var(--shadow-lg)" }}
           aria-label="Open chat"
         >
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white">
-            <img src={chatbotIcon} alt="Chatbot" className="h-10 w-10" />
-          </div>
+          <Activity className="h-8 w-8 text-white" strokeWidth={2.5} />
         </button>
       )}
 
@@ -180,7 +178,7 @@ export const ChatBot = () => {
           >
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                <img src={chatbotIcon} alt="Chatbot" className="h-9 w-9" />
+                <Activity className="h-7 w-7" style={{ color: "#007D84" }} strokeWidth={2.5} />
               </div>
               <div>
                 <h3 className="text-lg font-bold">Information Navigator</h3>
@@ -219,14 +217,13 @@ export const ChatBot = () => {
                     message.isBot ? "justify-start" : "justify-end"
                   } animate-in fade-in slide-in-from-bottom-2`}
                 >
-                  <div className={`${message.isBot ? "relative ml-3" : ""}`}>
+                  <div className={`${message.isBot ? "relative" : ""}`}>
                     {message.isBot && (
-                      <div
-                        className="absolute -left-3 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white"
-                        style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
-                      >
-                        <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
-                      </div>
+                      <img 
+                        src={chatbotIcon} 
+                        alt="Bot" 
+                        className="absolute -left-7 top-1 h-4 w-4" 
+                      />
                     )}
                     <div
                       className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-xl px-4 py-3`}
@@ -264,13 +261,12 @@ export const ChatBot = () => {
               ))}
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
-                  <div className="relative ml-3">
-                    <div
-                      className="absolute -left-3 top-0 flex h-8 w-8 items-center justify-center rounded-full bg-white"
-                      style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}
-                    >
-                      <img src={chatbotIcon} alt="Bot" className="h-5 w-5" />
-                    </div>
+                  <div className="relative">
+                    <img 
+                      src={chatbotIcon} 
+                      alt="Bot" 
+                      className="absolute -left-7 top-1 h-4 w-4" 
+                    />
                     <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
                       style={{
