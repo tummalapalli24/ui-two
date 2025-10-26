@@ -218,16 +218,26 @@ export const ChatBot = () => {
                     message.isBot ? "justify-start" : "justify-end"
                   } animate-in fade-in slide-in-from-bottom-2`}
                 >
-                  <div className={`${message.isBot ? "relative" : ""}`}>
+                  <div className={`${message.isBot ? "relative ml-2" : ""}`}>
+                    
+                    {/* ✨ edited bot icon section */}
                     {message.isBot && (
-                      <img 
-                        src={botMessageIcon} 
-                        alt="Bot" 
-                        className="absolute -left-4 top-0 h-6 w-6" 
-                      />
+                      <div
+                        className="absolute -left-2 top-1 flex h-4 w-6 items-center justify-center rounded-full bg-white shadow-sm"
+                      >
+                        <img
+                          src={botMessageIcon}
+                          alt="Chatbot"
+                          className="h-12 w-8 rounded full"
+                          style={{
+                            objectFit: "contain",
+                          }}
+                        />
+                      </div>
                     )}
+
                     <div
-                      className={`${message.isBot ? "max-w-[85%]" : "max-w-[85%]"} rounded-xl px-4 py-3`}
+                      className="max-w-[85%] rounded-xl px-4 py-3"
                       style={{
                         backgroundColor: message.isBot ? "#007D84" : "#F0F0F0",
                         color: message.isBot ? "#FFFFFF" : "#333333",
@@ -262,11 +272,12 @@ export const ChatBot = () => {
               ))}
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
-                  <div className="relative">
-                    <img 
-                      src={botMessageIcon} 
-                      alt="Bot" 
-                      className="absolute -left-4 top-0 h-6 w-6" 
+                  <div className="relative ml-2">
+                    <img
+                      src={botMessageIcon}
+                      alt="Bot"
+                      className="absolute -left-8 top-1 h-6 w-6"
+                      style={{ objectFit: "contain" }}
                     />
                     <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
