@@ -218,23 +218,30 @@ export const ChatBot = () => {
                     message.isBot ? "justify-start" : "justify-end"
                   } animate-in fade-in slide-in-from-bottom-2`}
                 >
-                  <div className={`${message.isBot ? "relative ml-2" : ""}`}>
+                  {/* 🟢 EDITED: Increased margin-left to ml-8 to make room for the avatar */}
+                  <div className={`${message.isBot ? "relative ml-0" : ""}`}>
                     
-                    {/* ✨ edited bot icon section */}
+                    {/* 👇 EDITED BOT ICON SECTION (Circular & Repositioned) 👇 */}
                     {message.isBot && (
                       <div
-                        className="absolute -left-2 top-1 flex h-4 w-6 items-center justify-center rounded-full bg-white shadow-sm"
+                        className="absolute left-0 flex h-6 w-6 items-center justify-center bg-white rounded-full shadow-md z-10"
+                        style={{
+                            // Simplified positioning
+                            left: 0,
+                            marginTop: "0px", // Slight vertical adjustment
+                        }}
                       >
                         <img
                           src={botMessageIcon}
                           alt="Chatbot"
-                          className="h-12 w-8 rounded full"
+                          className="h-6 w-6 rounded-full" // This makes the image circular
                           style={{
                             objectFit: "contain",
                           }}
                         />
                       </div>
                     )}
+                    {/* 👆 END OF EDITED BOT ICON SECTION 👆 */}
 
                     <div
                       className="max-w-[85%] rounded-xl px-4 py-3"
@@ -270,15 +277,26 @@ export const ChatBot = () => {
                   </div>
                 </div>
               ))}
+
+              {/* 👇 EDITED LOADING ICON SECTION (Circular & Repositioned) 👇 */}
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
-                  <div className="relative ml-2">
-                    <img
-                      src={botMessageIcon}
-                      alt="Bot"
-                      className="absolute -left-8 top-1 h-6 w-6"
-                      style={{ objectFit: "contain" }}
-                    />
+                  {/* 🟢 EDITED: Applied ml-8 here as well for the loading bubble container */}
+                  <div className="relative ml-8"> 
+                    <div
+                        className="absolute left-0 flex h-8 w-8 items-center justify-center bg-white rounded-full shadow-md z-10"
+                        style={{
+                            left: 0,
+                            marginTop: "-4px",
+                        }}
+                      >
+                        <img
+                            src={botMessageIcon}
+                            alt="Bot"
+                            className="h-6 w-6 rounded-full"
+                            style={{ objectFit: "contain" }}
+                        />
+                    </div>
                     <div
                       className="max-w-[80%] rounded-xl px-4 py-3"
                       style={{
@@ -305,6 +323,8 @@ export const ChatBot = () => {
                   </div>
                 </div>
               )}
+              {/* 👆 END OF EDITED LOADING ICON SECTION 👆 */}
+              
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
