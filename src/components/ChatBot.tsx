@@ -250,9 +250,10 @@ export const ChatBot = () => {
                         color: message.isBot ? "#FFFFFF" : "#333333",
                         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
                         borderRadius: "12px",
+                        marginLeft: message.isBot ? "32px" : "0",
                       }}
                     >
-                      <p className="text-sm font-normal leading-relaxed">{message.text}</p>
+                      <p className="text-sm font-normal leading-relaxed break-words whitespace-pre-wrap">{message.text}</p>
                       <span
                         className={`mt-1 block text-xs font-normal ${
                           message.isBot ? "opacity-80" : "opacity-60"
@@ -304,9 +305,10 @@ export const ChatBot = () => {
                         color: "#FFFFFF",
                         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
                         borderRadius: "12px",
+                        marginLeft: "32px",
                       }}
                     >
-                      <p className="text-sm font-normal leading-relaxed">
+                      <p className="text-sm font-normal leading-relaxed break-words whitespace-pre-wrap">
                         <span className="inline-flex gap-1">
                           <span className="animate-bounce" style={{ animationDelay: "0ms" }}>
                             .
