@@ -282,13 +282,12 @@ export const ChatBot = () => {
               {/* 👇 EDITED LOADING ICON SECTION (Circular & Repositioned) 👇 */}
               {isLoading && (
                 <div className="flex justify-start animate-in fade-in slide-in-from-bottom-2">
-                  {/* 🟢 EDITED: Applied ml-8 here as well for the loading bubble container */}
-                  <div className="relative ml-8"> 
+                  <div className="relative ml-0"> 
                     <div
-                        className="absolute left-0 flex h-8 w-8 items-center justify-center bg-white rounded-full shadow-md z-10"
+                        className="absolute left-0 flex h-6 w-6 items-center justify-center bg-white rounded-full shadow-md z-10"
                         style={{
                             left: 0,
-                            marginTop: "-4px",
+                            marginTop: "0px",
                         }}
                       >
                         <img
