@@ -250,7 +250,7 @@ export const ChatBot = () => {
                         color: message.isBot ? "#FFFFFF" : "#333333",
                         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
                         borderRadius: "12px",
-                        marginLeft: message.isBot ? "20px" : "0",
+                        marginLeft: message.isBot ? "10px" : "0",
                       }}
                     >
                       <p className="text-sm font-normal leading-relaxed break-words whitespace-pre-wrap">{message.text}</p>
