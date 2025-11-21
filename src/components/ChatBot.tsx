@@ -140,7 +140,7 @@ export const ChatBot = () => {
           onClick={() => setIsMinimized(false)}
         >
           <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white">
-            <img src={chatbotIcon} alt="Chatbot" className="h-9 w-9" />
+            <img src={chatbotIcon} alt="Chatbot" className="h-10 w-10" />
           </div>
           <span className="text-sm font-semibold text-white flex-1">Information Navigator</span>
           <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center">
