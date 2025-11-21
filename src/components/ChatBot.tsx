@@ -135,15 +135,15 @@ export const ChatBot = () => {
       {/* Minimized Bar */}
       {isOpen && isMinimized && (
         <div
-          className="fixed bottom-6 right-6 z-50 flex h-[60px] w-[240px] items-center justify-between rounded-full px-4 shadow-lg animate-in slide-in-from-bottom-4 fade-in cursor-pointer hover:shadow-xl transition-shadow"
+          className="fixed bottom-6 right-6 z-50 flex h-[60px] w-[260px] items-center gap-3 rounded-full pl-2 pr-4 shadow-lg animate-in slide-in-from-bottom-4 fade-in cursor-pointer hover:shadow-xl transition-shadow"
           style={{ backgroundColor: "#007D84" }}
           onClick={() => setIsMinimized(false)}
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white">
             <img src={chatbotIcon} alt="Chatbot" className="h-9 w-9" />
           </div>
-          <span className="text-sm font-semibold text-white ml-3">Information Navigator</span>
-          <div className="flex h-8 w-8 items-center justify-center">
+          <span className="text-sm font-semibold text-white flex-1">Information Navigator</span>
+          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
