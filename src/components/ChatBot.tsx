@@ -139,8 +139,8 @@ export const ChatBot = () => {
           style={{ backgroundColor: "#007D84" }}
           onClick={() => setIsMinimized(false)}
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
-            <img src={chatbotIcon} alt="Chatbot" className="h-7 w-7" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+            <img src={chatbotIcon} alt="Chatbot" className="h-9 w-9" />
           </div>
           <span className="text-sm font-semibold text-white ml-3">Information Navigator</span>
           <div className="flex h-8 w-8 items-center justify-center">
